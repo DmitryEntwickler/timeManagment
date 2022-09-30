@@ -29,9 +29,16 @@ fun writeToFile(){
     val minutes = readlnOrNull()
     if (hours != null && minutes != null) {
         if(hours.toIntOrNull() != null && minutes.toIntOrNull() != null) {
-            File("myDB.txt").appendText("\n$hours")
-            File("myDB.txt").appendText("\n$minutes")
-            println("speichern ok")
+            if (File("myDB.txt").exists()) {
+                File("myDB.txt").appendText("\n$hours")
+                File("myDB.txt").appendText("\n$minutes")
+                println("speichern ok")
+            }
+            else {
+                File("myDB.txt").appendText("$hours")
+                File("myDB.txt").appendText("\n$minutes")
+                println("Datei myDB.txt wurde neu erstellt und speichern ist ok")
+            }
         }
         else {
             println()
